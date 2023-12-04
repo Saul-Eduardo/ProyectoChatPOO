@@ -1,0 +1,2 @@
+Borren este archivo.
+Solo lo hice para que GitHub no ignorara este paquete al subir el primer commit.
