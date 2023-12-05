@@ -1,5 +1,5 @@
 
-package modelo;
+package MVC_Cliente.modelo;
 
 public class Usuario {
     private String nombreUsuario;
