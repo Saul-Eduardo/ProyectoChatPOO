@@ -1,5 +1,5 @@
 
-package MVC_Cliente.modelo;
+package Cliente.modelo;
 import java.util.List;
 
 public class Usuario {

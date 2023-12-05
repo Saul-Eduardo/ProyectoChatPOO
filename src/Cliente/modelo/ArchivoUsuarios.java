@@ -1,4 +1,4 @@
-package MVC_Cliente.modelo;
+package Cliente.modelo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

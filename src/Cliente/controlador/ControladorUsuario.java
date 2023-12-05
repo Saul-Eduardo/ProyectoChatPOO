@@ -1,10 +1,10 @@
 
-package MVC_Cliente.controlador;
+package Cliente.controlador;
 
 
 import java.util.ArrayList;
-import MVC_Cliente.modelo.Usuario;
-import MVC_Cliente.modelo.ArchivoUsuarios;
+import Cliente.modelo.Usuario;
+import Cliente.modelo.ArchivoUsuarios;
 
 public class ControladorUsuario {
     private ArrayList<Usuario> listaUsuarios;
