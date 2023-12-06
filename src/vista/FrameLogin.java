@@ -17,19 +17,19 @@ import java.io.*;
 public class FrameLogin extends JFrame {
     public static final int width = 400;
     public static final int heigth = 400;
-    JLabel labelUser;
-    JTextField writeUser;
-    JPasswordField writePass;
-    JLabel labelPass;
-    JButton acceptButton;
-    JButton registerButton;
-    ImageIcon loginicon;
-    JLabel labelLL;
-    Color fondo;
-    JLabel or;
+    private JLabel labelUser;
+    private JTextField writeUser;
+    private JPasswordField writePass;
+    private JLabel labelPass;
+    private JButton acceptButton;
+    private JButton registerButton;
+    private ImageIcon loginicon;
+    private JLabel labelLL;
+    private Color fondo;
+    private JLabel or;
     int a = 25, b = 150, c = 20, d = 200, e = 23, f = 160, g = 160, h = 210, i = 145;
-    JLabel msjError;
-    Socket cliente;
+    private JLabel msjError;
+    private Socket cliente;
     
     FrameLogin(){
         setUndecorated( false );
@@ -100,8 +100,35 @@ public class FrameLogin extends JFrame {
         add( registerButton );
         registerButton.updateUI();
 
-        ActionLogin opcion = new ActionLogin( this, acceptButton, registerButton, writeUser, writePass,cliente);
+        ActionLogin opcion = new ActionLogin( this, cliente );
         acceptButton.addActionListener( opcion );
         registerButton.addActionListener( opcion );
     }
+    
+    public JButton getAcceptButton(){
+        return acceptButton;
+    }
+    
+    public JButton getRegisterButton(){
+        return registerButton;
+    }
+    
+    public JTextField getWriteUser(){
+        return writeUser;
+    }
+    
+    public JTextField getWritePass(){
+        return writePass;
+    }
+    
+    public Socket getCliente(){
+        return cliente;
+    }
+    
+    public void setMsjError( JLabel jl ){
+        msjError = jl;
+        this.add( msjError );
+        msjError.updateUI();
+    }
+    
 }
