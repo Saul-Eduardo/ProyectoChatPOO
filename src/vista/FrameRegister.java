@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.net.*;
 
 public class FrameRegister extends JFrame {
     public static final int width = 400;
@@ -25,8 +26,9 @@ public class FrameRegister extends JFrame {
     JLabel labelRL;
     JLabel msj;
     int a = 25, b = 150, c = 20, d = 340, e = 23, f = 160, g = 160, h = 210, i = 145, j = 300;
+    Socket socket;
     
-    FrameRegister(){
+    FrameRegister(Socket s){
         setUndecorated( false );
         setLayout( null );
         setTitle( "Registro de usuario" );
@@ -38,6 +40,7 @@ public class FrameRegister extends JFrame {
         labels();
         textFields();
         buttons();
+        socket=s;
     }
 
     void icons(){
@@ -84,7 +87,7 @@ public class FrameRegister extends JFrame {
         add( cancelButton );
         cancelButton.updateUI();
 
-        ActionRegister opcion = new ActionRegister( this, acceptButton, cancelButton, writeUser, writePass );
+        ActionRegister opcion = new ActionRegister( this, acceptButton, cancelButton, writeUser, writePass,socket );
         acceptButton.addActionListener( opcion );
         cancelButton.addActionListener( opcion );
     }

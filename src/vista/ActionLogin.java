@@ -1,10 +1,5 @@
 package vista;
 
-/**
- *
- * @author zzeth
- */
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import Cliente.controlador.ControladorUsuario;
+import java.net.*;
+import java.io.*;
 
 public class ActionLogin implements ActionListener {
     JButton login, register;
@@ -19,17 +16,19 @@ public class ActionLogin implements ActionListener {
     JTextField tfUser, tfPass;
     FrameLogin frameIS;
     ControladorUsuario controlador;
+    Socket socket;
     
     ActionLogin(){
     }
 
-    ActionLogin( FrameLogin fl, JButton login, JButton register, JTextField user, JTextField pass ){
+    ActionLogin( FrameLogin fl, JButton login, JButton register, JTextField user, JTextField pass,Socket s){
         frameIS = fl;
         this.login = login;
         this.register = register;
         tfUser = user;
         tfPass = pass;
         controlador = new ControladorUsuario();
+        socket=s;
     }
     
     public void actionPerformed( ActionEvent ae ){
@@ -38,7 +37,7 @@ public class ActionLogin implements ActionListener {
             textPass = tfPass.getText();
             autenticar();
         }else if( ae.getSource() == register ){
-            FrameRegister iniciar = new FrameRegister();
+            FrameRegister iniciar = new FrameRegister(socket);
             //frameIS.setExtendedState( 1 );
             iniciar.setVisible( true );
             frameIS.dispose();
@@ -48,8 +47,19 @@ public class ActionLogin implements ActionListener {
     void autenticar(){
         frameIS.msjError = new JLabel();
         frameIS.msjError.setForeground( Color.red );
-        boolean userExist = controlador.autenticar(textUser); // en vez de true o false se llama al método autenticar, este debe retornar un valor booleano
-        boolean passCorrect = controlador.autenticarUsuario(textUser, textUser); // lo mismo
+        boolean userExist = false;
+        boolean passCorrect = false;
+        try{
+            DataOutputStream dos=new DataOutputStream(socket.getOutputStream());
+            DataInputStream dis=new DataInputStream(socket.getInputStream());
+            dos.writeUTF("iniciar");
+            dos.writeUTF(textUser);
+            dos.writeUTF(textPass);
+            userExist=dis.readBoolean();
+            passCorrect=dis.readBoolean();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
 
         if( userExist ){
             if( passCorrect ){

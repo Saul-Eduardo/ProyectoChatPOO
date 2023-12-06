@@ -46,11 +46,14 @@ public class Opciones extends Thread{
                 try{
                     String nombre=dis.readUTF();
                     String contrasena=dis.readUTF();
-                    boolean verificar=true;//llamamos el metodo iniciarsesion
-                    if(verificar==false){
+                    boolean verificar=usuarios.autenticar(nombre);
+                    boolean confirmar=usuarios.autenticarUsuario(nombre,contrasena);
+                    if(verificar==false || confirmar==false){
                         dos.writeBoolean(verificar);
-                    }else if(verificar==true){
+                        dos.writeBoolean(confirmar);
+                    }else if(verificar==true && confirmar==true){
                         dos.writeBoolean(verificar);
+                        dos.writeBoolean(confirmar);
                         iniciarConexion(nombre);
                     }
                     

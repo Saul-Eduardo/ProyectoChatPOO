@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import Cliente.controlador.ControladorUsuario;
+import java.net.*;
 
 public class ActionRegister implements ActionListener {
     JButton register, cancel;
@@ -21,17 +22,19 @@ public class ActionRegister implements ActionListener {
     JFrame acceptF;
     JButton accept;
     ControladorUsuario controlador;
+    Socket socket;
 
     ActionRegister(){
     }
 
-    ActionRegister( FrameRegister fr, JButton register, JButton cancel, JTextField user, JTextField pass ){
+    ActionRegister( FrameRegister fr, JButton register, JButton cancel, JTextField user, JTextField pass,Socket s ){
         frameR = fr;
         this.register = register;
         this.cancel = cancel;
         tfUser = user;
         tfPass = pass;
         controlador = new ControladorUsuario();
+        socket=s;
     }
 
     public void actionPerformed( ActionEvent ae ){

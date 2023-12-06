@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.net.*;
+import java.io.*;
 
 public class FrameLogin extends JFrame {
     public static final int width = 400;
@@ -27,6 +29,7 @@ public class FrameLogin extends JFrame {
     JLabel or;
     int a = 25, b = 150, c = 20, d = 200, e = 23, f = 160, g = 160, h = 210, i = 145;
     JLabel msjError;
+    Socket cliente;
     
     FrameLogin(){
         setUndecorated( false );
@@ -41,6 +44,14 @@ public class FrameLogin extends JFrame {
         labels();
         textFields();
         buttons();
+        try{
+            cliente=new Socket("127.0.0.1",4321);
+            DataOutputStream dos=new DataOutputStream(cliente.getOutputStream());
+            dos.writeUTF("a");
+        }catch(IOException w){
+            w.printStackTrace();
+        }
+        
     }
     
     void icons(){
@@ -89,7 +100,7 @@ public class FrameLogin extends JFrame {
         add( registerButton );
         registerButton.updateUI();
 
-        ActionLogin opcion = new ActionLogin( this, acceptButton, registerButton, writeUser, writePass );
+        ActionLogin opcion = new ActionLogin( this, acceptButton, registerButton, writeUser, writePass,cliente);
         acceptButton.addActionListener( opcion );
         registerButton.addActionListener( opcion );
     }
