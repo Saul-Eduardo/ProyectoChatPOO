@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import Cliente.controlador.ControladorUsuario;
 
 public class ActionRegister implements ActionListener {
     JButton register, cancel;
@@ -19,6 +20,7 @@ public class ActionRegister implements ActionListener {
     FrameRegister frameR;
     JFrame acceptF;
     JButton accept;
+    ControladorUsuario controlador;
 
     ActionRegister(){
     }
@@ -29,6 +31,7 @@ public class ActionRegister implements ActionListener {
         this.cancel = cancel;
         tfUser = user;
         tfPass = pass;
+        controlador = new ControladorUsuario();
     }
 
     public void actionPerformed( ActionEvent ae ){
@@ -37,8 +40,9 @@ public class ActionRegister implements ActionListener {
         if( ae.getSource() == register ){
             textUser = tfUser.getText();
             textPass = tfPass.getText();
+            boolean usuarioExiste = controlador.registrarUsuario( textUser, textPass );
             // método que lleve los textos al código registrar
-            if( textUser != null && textPass != null ){
+            if( usuarioExiste ){
                 frameR.dispose();
                 acceptFrame();
                 JLabel msj = new JLabel( "¡Usuario registrado! Ya puedes iniciar sesión" );

@@ -11,12 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import Cliente.controlador.ControladorUsuario;
 
 public class ActionLogin implements ActionListener {
     JButton login, register;
     String textUser, textPass;
     JTextField tfUser, tfPass;
     FrameLogin frameIS;
+    ControladorUsuario controlador;
     
     ActionLogin(){
     }
@@ -27,6 +29,7 @@ public class ActionLogin implements ActionListener {
         this.register = register;
         tfUser = user;
         tfPass = pass;
+        controlador = new ControladorUsuario();
     }
     
     public void actionPerformed( ActionEvent ae ){
@@ -42,12 +45,11 @@ public class ActionLogin implements ActionListener {
         }
     }
     
-    // aquí va el código autenticar
     void autenticar(){
         frameIS.msjError = new JLabel();
         frameIS.msjError.setForeground( Color.red );
-        boolean userExist = false; // en vez de true o false se llama al método autenticar, este debe retornar un valor booleano
-        boolean passCorrect = true; // lo mismo
+        boolean userExist = controlador.autenticar(textUser); // en vez de true o false se llama al método autenticar, este debe retornar un valor booleano
+        boolean passCorrect = controlador.autenticarUsuario(textUser, textUser); // lo mismo
 
         if( userExist ){
             if( passCorrect ){
