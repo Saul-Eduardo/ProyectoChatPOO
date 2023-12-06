@@ -50,7 +50,7 @@ public class Chat extends JInternalFrame {
         enviarMsjs = new JPanel( new BorderLayout() );
         escribir = new JTextField( 24 );
         enviar = new JButton( "Enviar" );
-        ImageIcon clipicon = new ImageIcon( "clip.png" );
+        ImageIcon clipicon = new ImageIcon( "src/vista/clip.png" );
         enviarArch = new JButton( clipicon );
         enviarArch.setToolTipText("Enviar archivo");
         enviarMsjs.add( escribir, BorderLayout.WEST );

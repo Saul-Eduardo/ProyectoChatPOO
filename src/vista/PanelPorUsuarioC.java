@@ -19,12 +19,12 @@ public class PanelPorUsuarioC extends JPanel {
 
     PanelPorUsuarioC(){
         setLayout( new BorderLayout() );
-        useronlineicon = new ImageIcon( "online.png" );
+        useronlineicon = new ImageIcon( "src/vista/online.png" );
     }
 
     PanelPorUsuarioC( String nombre ){
         setLayout( new BorderLayout() );
-        useronlineicon = new ImageIcon( "online.png" );
+        useronlineicon = new ImageIcon( "src/vista/online.png" );
         this.nombre = nombre;
         etiquetaUC = new JLabel( nombre, useronlineicon, 0 );
         add( etiquetaUC, BorderLayout.WEST );
