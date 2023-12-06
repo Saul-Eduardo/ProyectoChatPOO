@@ -56,7 +56,8 @@ public class ActionLogin implements ActionListener {
         userExist = false;
         if( userExist ){
             if( passCorrect ){
-                //VentanaI ventana = new VentanaI();
+                POOMessenger p = new POOMessenger();
+                p.getChat().setNombreE( textUser );
                 System.out.println( "Se ingresó\nUsuario: " + textUser + "\nPassword: " + textPass );
                 frameIS.dispose();
             }else{
