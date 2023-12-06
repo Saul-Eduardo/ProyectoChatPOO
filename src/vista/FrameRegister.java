@@ -16,17 +16,17 @@ import java.net.*;
 public class FrameRegister extends JFrame {
     public static final int width = 400;
     public static final int heigth = 400;
-    JLabel labelUser;
-    JTextField writeUser;
-    JTextField writePass;
-    JLabel labelPass;
-    JButton acceptButton;
-    JButton cancelButton;
-    ImageIcon registericon;
-    JLabel labelRL;
-    JLabel msj;
+    private JLabel labelUser;
+    private JTextField writeUser;
+    private JTextField writePass;
+    private JLabel labelPass;
+    private JButton acceptButton;
+    private JButton cancelButton;
+    private ImageIcon registericon;
+    private JLabel labelRL;
+    private JLabel msj;
     int a = 25, b = 150, c = 20, d = 340, e = 23, f = 160, g = 160, h = 210, i = 145, j = 300;
-    Socket socket;
+    private Socket socket;
     
     FrameRegister(Socket s){
         setUndecorated( false );
@@ -87,8 +87,25 @@ public class FrameRegister extends JFrame {
         add( cancelButton );
         cancelButton.updateUI();
 
-        ActionRegister opcion = new ActionRegister( this, acceptButton, cancelButton, writeUser, writePass,socket );
+        ActionRegister opcion = new ActionRegister( this, socket );
         acceptButton.addActionListener( opcion );
         cancelButton.addActionListener( opcion );
     }
+    
+    public JTextField getWriteUser(){
+        return writeUser;
+    }
+    
+    public JTextField getWritePass(){
+        return writePass;
+    }
+    
+    public JButton getAcceptButton(){
+        return acceptButton;
+    }
+    
+    public JButton getCancelButton(){
+        return cancelButton;
+    }
+    
 }
