@@ -5,16 +5,19 @@ import Cliente.modelo.Usuario;
 import Cliente.modelo.ArchivoUsuarios;
 import java.io.*;
 import java.util.*;
+import java.net.*;
 
 public class ControladorUsuario {
     private ArrayList<Usuario> listaUsuarios;
-    private ArrayList<String> usuariosConectados;
+    public ArrayList<String> usuariosConectados;
     private ArchivoUsuarios archivoUsuarios;
     private ArchivarSerializar arch;
+    public ArrayList<Socket> sockets; 
     
     public ControladorUsuario(){
         this.usuariosConectados = new ArrayList<>();
         listaUsuarios = new ArrayList<Usuario>();
+        sockets=new ArrayList<Socket>();
     }
 
     public ControladorUsuario(String rutaArchivo) {
@@ -78,6 +81,10 @@ public class ControladorUsuario {
     // Getter de la lista de usuarios conectados
     public ArrayList<String> obtenerUsuariosConectados() {
         return usuariosConectados;
+    }
+    
+    public ArrayList<Usuario> obtenerUsuarios() {
+        return listaUsuarios;
     }
 }
 
