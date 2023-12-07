@@ -1,4 +1,4 @@
-package vista;
+package Cliente.vista;
 
 /**
  *
@@ -58,7 +58,7 @@ public class FrameLogin extends JFrame {
     }
     
     void icons(){
-        loginicon = new ImageIcon( "src/vista/avatar.png" );
+        loginicon = new ImageIcon( "src/cliente/vista/avatar.png" );
         labelLL = new JLabel( loginicon );
         labelLL.setBounds( 160, 40, 80, 80 );
         add( labelLL );

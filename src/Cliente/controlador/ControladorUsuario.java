@@ -2,7 +2,6 @@ package Cliente.controlador;
 
 import java.util.ArrayList;
 import Cliente.modelo.Usuario;
-import Cliente.modelo.ArchivoUsuarios;
 import java.io.*;
 import java.util.*;
 import java.net.*;
@@ -36,6 +35,19 @@ public class ControladorUsuario {
             return usuariosH;
         }catch(FileNotFoundException sad){
            System.out.println("archivo no encontrado");
+            // Generar un archivo serializado con un usuario predeterminado
+            Usuario usuarioPredeterminado = new Usuario("hola", "hola");
+            ArrayList<Usuario> usuariosNuevos = new ArrayList<>();
+            usuariosNuevos.add(usuarioPredeterminado);
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("databaseusers.ser"))) {
+                oos.writeObject(usuariosNuevos);
+                System.out.println("Nuevo archivo serializado.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Volver a intentar hidratar
+            return hidratar();
         }catch(IOException ert){
             System.out.println("entrada o salida error");
         }catch(ClassNotFoundException dor){

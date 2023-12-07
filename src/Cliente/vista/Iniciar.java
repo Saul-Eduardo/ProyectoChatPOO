@@ -1,12 +1,12 @@
-package vista;
+package Cliente.vista;
+import Cliente.modelo.Usuario;
 import java.io.*;
+import java.util.ArrayList;
 
-/**
- *
- * @author zzeth
- */
+
 public class Iniciar {
     public static void main( String[] zz ){
+        
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         String direccionIP=" ";
         try{

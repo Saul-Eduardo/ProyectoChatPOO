@@ -1,4 +1,4 @@
-package vista;
+package Cliente.vista;
 /**
  *
  * @author zzeth

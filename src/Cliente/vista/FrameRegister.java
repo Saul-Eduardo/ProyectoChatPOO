@@ -1,4 +1,4 @@
-package vista;
+package Cliente.vista;
 
 /**
  *
@@ -44,7 +44,7 @@ public class FrameRegister extends JFrame {
     }
 
     void icons(){
-        registericon = new ImageIcon( "src/vista/avatarplus.png" );
+        registericon = new ImageIcon( "src/cliente/vista/avatarplus.png" );
         labelRL = new JLabel( registericon );
         labelRL.setBounds( 160, 40, 80, 80 );
         add( labelRL );
