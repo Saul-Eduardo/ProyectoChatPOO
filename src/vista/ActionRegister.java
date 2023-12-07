@@ -52,7 +52,8 @@ public class ActionRegister implements ActionListener {
         }else if( ae.getSource() == accept ){
             acceptF.dispose();
             FrameLogin f = new FrameLogin();
-            f.setExtendedState( 0 );
+            //f.setExtendedState( 0 );
+            f.setVisible(true);
         }
     }
 
