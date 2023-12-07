@@ -30,6 +30,7 @@ public class FrameLogin extends JFrame {
     int a = 25, b = 150, c = 20, d = 200, e = 23, f = 160, g = 160, h = 210, i = 145;
     private JLabel msjError;
     private Socket cliente;
+    private String direccionIP;
     
     FrameLogin(){
         setUndecorated( false );
@@ -39,19 +40,22 @@ public class FrameLogin extends JFrame {
         setResizable( true );
         setLocationRelativeTo(null);
         setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-        setVisible( true );
+        
+        //setVisible( true );
         icons();
         labels();
         textFields();
         buttons();
+    }
+    
+    public void construirSocket(String direccion){
         try{
-            cliente=new Socket("127.0.0.1",4321);
+            cliente=new Socket(direccion,4321);
             DataOutputStream dos=new DataOutputStream(cliente.getOutputStream());
             dos.writeUTF("a");
         }catch(IOException w){
             w.printStackTrace();
         }
-        
     }
     
     void icons(){
@@ -129,6 +133,10 @@ public class FrameLogin extends JFrame {
         msjError = jl;
         this.add( msjError );
         msjError.updateUI();
+    }
+    
+    public void setdireccionIP(String direccion){
+        direccionIP=direccion;
     }
     
 }
