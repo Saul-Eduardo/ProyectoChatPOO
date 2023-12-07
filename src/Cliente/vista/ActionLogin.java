@@ -17,9 +17,8 @@ public class ActionLogin implements ActionListener {
     
     ActionLogin(){}
 
-    ActionLogin( FrameLogin fl, Socket s){
+    ActionLogin( FrameLogin fl){
         frameIS = fl;
-        socket=s;
     }
     
     public void actionPerformed( ActionEvent ae ){
@@ -28,7 +27,7 @@ public class ActionLogin implements ActionListener {
             textPass = frameIS.getWritePass().getText();
             autenticar();
         }else if( ae.getSource() == frameIS.getRegisterButton() ){
-            FrameRegister iniciar = new FrameRegister(socket);
+            FrameRegister iniciar = new FrameRegister();
             iniciar.setVisible( true );
             frameIS.dispose();
         }
@@ -39,6 +38,13 @@ public class ActionLogin implements ActionListener {
         me.setForeground( Color.red );
         boolean userExist = false;
         boolean passCorrect = false;
+        try{
+            socket=new Socket(Iniciar.direccionIP,4321);
+            DataOutputStream dos=new DataOutputStream(socket.getOutputStream());
+            dos.writeUTF("a");
+        }catch(IOException w){
+            w.printStackTrace();
+        }
         try{
             DataOutputStream dos=new DataOutputStream(socket.getOutputStream());
             DataInputStream dis=new DataInputStream(socket.getInputStream());

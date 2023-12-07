@@ -26,9 +26,10 @@ public class FrameRegister extends JFrame {
     private JLabel labelRL;
     private JLabel msj;
     int a = 25, b = 150, c = 20, d = 340, e = 23, f = 160, g = 160, h = 210, i = 145, j = 300;
-    private Socket socket;
     
-    FrameRegister(Socket s){
+    public FrameRegister(){}
+    
+    public FrameRegister(Socket s){
         setUndecorated( false );
         setLayout( null );
         setTitle( "Registro de usuario" );
@@ -40,7 +41,6 @@ public class FrameRegister extends JFrame {
         labels();
         textFields();
         buttons();
-        socket=s;
     }
 
     void icons(){
@@ -87,7 +87,7 @@ public class FrameRegister extends JFrame {
         add( cancelButton );
         cancelButton.updateUI();
 
-        ActionRegister opcion = new ActionRegister( this, socket );
+        ActionRegister opcion = new ActionRegister( this);
         acceptButton.addActionListener( opcion );
         cancelButton.addActionListener( opcion );
     }

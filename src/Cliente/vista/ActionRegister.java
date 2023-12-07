@@ -22,12 +22,10 @@ public class ActionRegister implements ActionListener {
     JButton accept;
     Socket socket;
 
-    ActionRegister(){
-    }
+    ActionRegister(){}
 
-    ActionRegister( FrameRegister fr, Socket s ){
+    ActionRegister( FrameRegister fr){
         frameR = fr;
-        socket=s;
     }
 
     public void actionPerformed( ActionEvent ae ){
@@ -38,12 +36,15 @@ public class ActionRegister implements ActionListener {
             textPass = frameR.getWritePass().getText();
             boolean usuarioExiste =false;
             try{
-                DataInputStream dis=new DataInputStream(socket.getInputStream());
+                socket=new Socket(Iniciar.direccionIP,4321);
                 DataOutputStream dos=new DataOutputStream(socket.getOutputStream());
+                DataInputStream dis=new DataInputStream(socket.getInputStream());
+                dos.writeUTF("a");
                 dos.writeUTF("registra");
                 dos.writeUTF(textUser);
                 dos.writeUTF(textPass);
                 usuarioExiste=dis.readBoolean();
+                socket.close();
             }catch(IOException e){
                 e.printStackTrace();
             }

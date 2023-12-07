@@ -5,10 +5,11 @@ import java.util.ArrayList;
 
 
 public class Iniciar {
+    static String direccionIP=" ";
+    
     public static void main( String[] zz ){
         
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        String direccionIP=" ";
         try{
             System.out.println("ingrese la direccion IP: ");
             direccionIP=br.readLine();
@@ -16,7 +17,5 @@ public class Iniciar {
             e.printStackTrace();
         }
         FrameLogin iniciar = new FrameLogin();
-        iniciar.construirSocket(direccionIP);
-        iniciar.setVisible(true);
     }
 }
