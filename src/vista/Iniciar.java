@@ -15,7 +15,7 @@ public class Iniciar {
         }catch(IOException e){
             e.printStackTrace();
         }
-        FrameLogin iniciar = new FrameLogin(); 
+        FrameLogin iniciar = new FrameLogin();
         iniciar.construirSocket(direccionIP);
         iniciar.setVisible(true);
     }

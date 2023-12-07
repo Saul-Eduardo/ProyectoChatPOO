@@ -13,14 +13,12 @@ import java.io.*;
 public class ActionLogin implements ActionListener {
     String textUser, textPass;
     FrameLogin frameIS;
-    ControladorUsuario controlador;
     Socket socket;
     
     ActionLogin(){}
 
     ActionLogin( FrameLogin fl, Socket s){
         frameIS = fl;
-        controlador = new ControladorUsuario();
         socket=s;
     }
     
@@ -52,8 +50,6 @@ public class ActionLogin implements ActionListener {
         }catch(IOException e){
             e.printStackTrace();
         }
-        
-        userExist = false;
         if( userExist ){
             if( passCorrect ){
                 POOMessenger p = new POOMessenger();

@@ -8,7 +8,6 @@ import Cliente.modelo.Usuario;
  * @author zzeth
  */
 public class ArchivarSerializar {
-    static int cont = 0;
     FileOutputStream users;
     ObjectOutputStream oUsers;
     Usuario usuario;

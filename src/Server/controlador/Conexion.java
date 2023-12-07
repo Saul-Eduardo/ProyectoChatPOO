@@ -18,6 +18,7 @@ public class Conexion extends Thread{
             server=new ServerSocket(4321);
             while(op==0){
                 Socket cliente=server.accept();
+                System.out.println("Cliente conectado.....");
                 Opciones opc=new Opciones(cliente);
                 opc.start();
             }

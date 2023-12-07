@@ -13,13 +13,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import Cliente.controlador.ControladorUsuario;
 import java.net.*;
+import java.io.*;
 
 public class ActionRegister implements ActionListener {
     String textUser, textPass;
     FrameRegister frameR;
     JFrame acceptF;
     JButton accept;
-    ControladorUsuario controlador;
     Socket socket;
 
     ActionRegister(){
@@ -27,7 +27,6 @@ public class ActionRegister implements ActionListener {
 
     ActionRegister( FrameRegister fr, Socket s ){
         frameR = fr;
-        controlador = new ControladorUsuario();
         socket=s;
     }
 
@@ -37,13 +36,25 @@ public class ActionRegister implements ActionListener {
         if( ae.getSource() == frameR.getAcceptButton() ){
             textUser = frameR.getWriteUser().getText();
             textPass = frameR.getWritePass().getText();
-            boolean usuarioExiste = controlador.registrarUsuario( textUser, textPass );
+            boolean usuarioExiste =false;
+            try{
+                DataInputStream dis=new DataInputStream(socket.getInputStream());
+                DataOutputStream dos=new DataOutputStream(socket.getOutputStream());
+                dos.writeUTF("registra");
+                dos.writeUTF(textUser);
+                dos.writeUTF(textPass);
+                usuarioExiste=dis.readBoolean();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
             // método que lleve los textos al código registrar
             if( usuarioExiste ){
                 frameR.dispose();
                 acceptFrame();
                 System.out.println( "Se registró.\nUsuario: " + textUser + "\nPassword: " + textPass );
                 acceptF.setVisible( true );
+            }else{
+                System.out.print("usuario existente");
             }
         }else if( ae.getSource() == frameR.getCancelButton() ){
             System.out.println( "Se presionó cancelar el registro" );
@@ -52,7 +63,8 @@ public class ActionRegister implements ActionListener {
         }else if( ae.getSource() == accept ){
             acceptF.dispose();
             FrameLogin f = new FrameLogin();
-            f.setExtendedState( 0 );
+            //f.setExtendedState( 0 );
+            f.setVisible(true);
         }
     }
 

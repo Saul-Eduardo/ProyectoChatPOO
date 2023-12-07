@@ -10,33 +10,43 @@ import java.net.*;
 public class ControladorUsuario {
     private ArrayList<Usuario> listaUsuarios;
     public ArrayList<String> usuariosConectados;
-    private ArchivoUsuarios archivoUsuarios;
+    //private ArchivoUsuarios archivoUsuarios;
     private ArchivarSerializar arch;
     public ArrayList<Socket> sockets; 
     
     public ControladorUsuario(){
         this.usuariosConectados = new ArrayList<>();
-        listaUsuarios = new ArrayList<Usuario>();
+        listaUsuarios = hidratar();
         sockets=new ArrayList<Socket>();
     }
 
-    public ControladorUsuario(String rutaArchivo) {
-        //this.listaUsuarios = hidratar();
+    /*public ControladorUsuario(String rutaArchivo) {
+        this.listaUsuarios = hidratar();
         this.usuariosConectados = new ArrayList<>();
         this.archivoUsuarios = new ArchivoUsuarios(rutaArchivo);
         cargarUsuariosDesdeArchivo();
+    }*/
+    
+    public ArrayList<Usuario> hidratar(){
+        ArrayList<Usuario> usuariosH =null;
+        try{
+            FileInputStream fis = new FileInputStream( "databaseusers.ser" );
+            ObjectInputStream ois = new ObjectInputStream( fis );
+            usuariosH = ( ArrayList<Usuario> ) ois.readObject();
+            return usuariosH;
+        }catch(FileNotFoundException sad){
+           System.out.println("archivo no encontrado");
+        }catch(IOException ert){
+            System.out.println("entrada o salida error");
+        }catch(ClassNotFoundException dor){
+            dor.printStackTrace();
+        }
+        return usuariosH;
     }
     
-    /*public ArrayList<Usuario> hidratar(){
-        FileInputStream fis = new FileInputStream( "databaseusers.ser" );
-        ObjectInputStream ois = new ObjectInputStream( fis );
-        ArrayList<Usuario> usuariosH = ( ArrayList<Usuario> ) ois.readObject();
-        return usuariosH;
-    }*/
-
-    private void cargarUsuariosDesdeArchivo() {
+    /*private void cargarUsuariosDesdeArchivo() {
         listaUsuarios = archivoUsuarios.cargarUsuarios();
-    }
+    }*/
 
     public boolean registrarUsuario(String nombreUsuario, String contraseña) {
         // Verificar si el usuario ya existe

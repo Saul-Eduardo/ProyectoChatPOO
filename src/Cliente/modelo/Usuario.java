@@ -1,8 +1,9 @@
 
 package Cliente.modelo;
+import java.io.Serializable;
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Serializable{
     private String nombreUsuario;
     private String contraseña;
 

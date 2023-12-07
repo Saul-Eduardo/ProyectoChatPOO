@@ -40,7 +40,6 @@ public class FrameLogin extends JFrame {
         setResizable( true );
         setLocationRelativeTo(null);
         setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-        
         //setVisible( true );
         icons();
         labels();

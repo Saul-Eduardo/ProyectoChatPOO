@@ -21,7 +21,7 @@ public class Opciones extends Thread{
     
     Opciones(Socket c){
         cliente=c;
-        usuarios=new ControladorUsuario("databaseusers.ser");
+        usuarios=new ControladorUsuario();
     }
     
     public void run(){
@@ -64,12 +64,11 @@ public class Opciones extends Thread{
                 try{
                     String nombre=dis.readUTF();
                     String contrasena=dis.readUTF();
-                    boolean verificar=true;//llamamos el metodo de registro
+                    boolean verificar=usuarios.registrarUsuario(nombre, contrasena); //llamamos el metodo de registro
                     if(verificar==false){
                         dos.writeBoolean(verificar);
                     }else if(verificar==true){
                         dos.writeBoolean(verificar);
-                        iniciarConexion(nombre);
                     }
                 }catch(IOException s){
                     s.printStackTrace();
