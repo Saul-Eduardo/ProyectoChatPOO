@@ -27,9 +27,7 @@ public class FrameRegister extends JFrame {
     private JLabel msj;
     int a = 25, b = 150, c = 20, d = 340, e = 23, f = 160, g = 160, h = 210, i = 145, j = 300;
     
-    public FrameRegister(){}
-    
-    public FrameRegister(Socket s){
+    public FrameRegister(){
         setUndecorated( false );
         setLayout( null );
         setTitle( "Registro de usuario" );

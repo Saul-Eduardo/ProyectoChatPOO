@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.net.*;
 
 public class POOMessenger extends JFrame {
     private Organizador org;
@@ -23,8 +24,12 @@ public class POOMessenger extends JFrame {
     private JMenuItem cambiarNombre, addAmigo, elimAmigo, listaAmigos, desconectarse;
     private String nombreE;
     private Chat c;
+    Socket socket;
 
-    POOMessenger(){
+    POOMessenger(){}
+    
+    POOMessenger(Socket s){
+        socket=s;
         setLocationRelativeTo( null );
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
@@ -33,7 +38,7 @@ public class POOMessenger extends JFrame {
         setTitle( "POOMessenger" );
         setSize( 604, 359 );
 
-        org = new Organizador();
+        org = new Organizador(socket);
         add( org );
         c = org.getChat();
         

@@ -39,7 +39,7 @@ public class ControladorMsj extends Thread {
             }catch(IOException e){
                 e.printStackTrace();
             }
-            msj=nombreUsuario+": "+msj;
+            msj=nombreUsuario+": "+msj+"\n";
             for(Socket s:clientes){
                 if(clientes.indexOf(s)!=nombresUsuarios.indexOf(nombreUsuario)){
                     try{

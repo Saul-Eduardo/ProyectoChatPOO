@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.net.*;
 
 public class Chat extends JInternalFrame {
     private JTextArea msjsChat;
@@ -23,8 +24,12 @@ public class Chat extends JInternalFrame {
     private JPanel enviarMsjs;
     private String nombreE = "X0";
     private Send funcionEnviar;
+    private Socket socket;
+    
+    Chat(){}
 
-    Chat(){
+    Chat(Socket s){
+        socket=s;
         setTitle( "Chat grupal" );
         setLayout( new BorderLayout() );
         setSize( 390, 300 );
@@ -57,7 +62,7 @@ public class Chat extends JInternalFrame {
         enviarMsjs.add( enviarArch, BorderLayout.CENTER );
         enviarMsjs.add( enviar, BorderLayout.EAST );
 
-        funcionEnviar = new Send( this );
+        funcionEnviar = new Send( this,socket );
         escribir.addKeyListener( funcionEnviar );
         enviar.addActionListener( funcionEnviar );
         enviarArch.addActionListener( funcionEnviar );

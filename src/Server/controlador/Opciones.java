@@ -81,17 +81,17 @@ public class Opciones extends Thread{
     
     public void iniciarConexion(String nombre){
         //enviar lista de usuarios conectados al cliente
-        try{
+        /*try{
             DataOutputStream dos=new DataOutputStream(cliente.getOutputStream());
             for(String n:usuarios.obtenerUsuariosConectados()){
                 dos.writeUTF(n);
             }
         }catch(IOException e){
             e.printStackTrace();
-        }
+        }*/
         //registrar el nombre del usuario a la lista de usuarios conectados
         usuarios.obtenerUsuariosConectados().add(nombre);
         usuarios.sockets.add(cliente);
-        Chat chat=new Chat(nombre,cliente,usuarios.usuariosConectados,usuarios.sockets);
+        ChatServer chat=new ChatServer(nombre,cliente,usuarios.usuariosConectados,usuarios.sockets);
     }
 }

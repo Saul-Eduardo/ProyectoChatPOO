@@ -4,15 +4,15 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-public class Chat{
+public class ChatServer{
     ArrayList<Socket> clientes;
     ArrayList<String> nombresUsuarios;
     String nombreUsuario;
     Socket cliente;
     
-    Chat(){}
+    ChatServer(){}
     
-    Chat(String nu,Socket s,ArrayList<String> nus,ArrayList<Socket> c){
+    ChatServer(String nu,Socket s,ArrayList<String> nus,ArrayList<Socket> c){
         nombreUsuario=nu;
         cliente=s;
         nombresUsuarios=nus;
