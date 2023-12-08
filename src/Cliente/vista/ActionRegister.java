@@ -48,14 +48,14 @@ public class ActionRegister implements ActionListener {
             }catch(IOException e){
                 e.printStackTrace();
             }
-            // método que lleve los textos al código registrar
             if( usuarioExiste ){
                 frameR.dispose();
                 acceptFrame();
                 System.out.println( "Se registró.\nUsuario: " + textUser + "\nPassword: " + textPass );
                 acceptF.setVisible( true );
             }else{
-                System.out.print("usuario existente");
+                error();
+                System.out.print("Se ingresó un usuario ya existente" );
             }
         }else if( ae.getSource() == frameR.getCancelButton() ){
             System.out.println( "Se presionó cancelar el registro" );
@@ -67,6 +67,14 @@ public class ActionRegister implements ActionListener {
             //f.setExtendedState( 0 );
             f.setVisible(true);
         }
+    }
+    
+    void error(){
+        JLabel me = new JLabel();
+        me.setForeground( Color.red );
+        me.setText( "Usuario ya existente" );
+        me.setBounds( 140, 130, 242, 30 );
+        frameR.setError( me );
     }
 
     void acceptFrame(){

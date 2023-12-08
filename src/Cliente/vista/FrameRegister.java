@@ -25,6 +25,7 @@ public class FrameRegister extends JFrame {
     private ImageIcon registericon;
     private JLabel labelRL;
     private JLabel msj;
+    private JLabel error;
     int a = 25, b = 150, c = 20, d = 340, e = 23, f = 160, g = 160, h = 210, i = 145, j = 300;
     
     public FrameRegister(){
@@ -104,6 +105,12 @@ public class FrameRegister extends JFrame {
     
     public JButton getCancelButton(){
         return cancelButton;
+    }
+    
+    public void setError( JLabel e ){
+        error = e;
+        this.add( error );
+        error.updateUI();
     }
     
 }
